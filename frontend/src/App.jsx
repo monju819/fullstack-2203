@@ -8,7 +8,7 @@ function App() {
       "http://localhost:8000/api/v1/auth/registration",
       {
         email: values.email,
-        name: values.username,
+        username: values.username,
         password: values.password,
       },
       {
