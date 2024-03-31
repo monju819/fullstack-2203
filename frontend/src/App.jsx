@@ -1,96 +1,33 @@
-import { Button, Form, Input } from "antd";
-import axios from "axios";
+import {
+  createRoutesFromElements,
+  createBrowserRouter,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import Registration from "./pages/Registration";
+import OtpVerification from "./pages/OtpVerification";
+import Login from "./pages/Login";
+import Forgotpassword from "./pages/Forgotpassword";
+import ChangePass from "./pages/ChangePass";
 
+// react-router-dom
 function App() {
-  const onFinish = (values) => {
-    console.log("Success:", values);
-    axios.post(
-      "http://localhost:8000/api/v1/auth/registration",
-      {
-        email: values.email,
-        username: values.username,
-        password: values.password,
-      },
-      {
-        headers: {
-          Authorization: "hklflkjlfjgiutjffjkd",
-        },
-      }
-    );
-  };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
-  return (
-    <Form
-      name="basic"
-      labelCol={{
-        span: 8,
-      }}
-      wrapperCol={{
-        span: 16,
-      }}
-      style={{
-        maxWidth: 600,
-      }}
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
-      <Form.Item
-        label="Email"
-        name="email"
-        rules={[
-          {
-            required: true,
-            message: "Please Enter valid email!",
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        label="Username"
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: "Please input your username!",
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your password!",
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route>
+        <Route path="/" element={<Registration />}></Route>
+        <Route
+          path="/otpvirification/:email/:otp"
+          element={<OtpVerification />}
+        ></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/forgotpassword" element={<Forgotpassword />}></Route>
+        <Route path="/changepass/:token" element={<ChangePass />}></Route>
+      </Route>
+    )
   );
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;

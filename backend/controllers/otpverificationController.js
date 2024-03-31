@@ -11,9 +11,12 @@ let otpverificationController = async (req, res) => {
   const { email, otp } = req.body;
   let findEmail = await User.findOne({ email: email });
   if (findEmail) {
-    if (findEmail.otp == otp) {
+    if (!findEmail.isEmailverified && findEmail.otp == otp) {
       console.log("milse");
-      await User.findOneAndUpdate({ email: email }, { otp: "" });
+      await User.findOneAndUpdate(
+        { email: email },
+        { otp: "", isEmailverified: true }
+      );
       res.send({ success: "otp matched" });
     } else {
       console.log("mile nai");

@@ -17,6 +17,10 @@ const userSchema = new Schema({
   otp: {
     type: String,
   },
+  isEmailverified: {
+    type: Boolean,
+    default: false,
+  },
   role: {
     type: String,
     enum: ["user", "merchant", "admin"],

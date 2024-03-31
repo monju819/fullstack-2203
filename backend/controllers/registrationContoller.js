@@ -56,7 +56,7 @@ let registrationContoller = async (req, res) => {
           from: "sajidhasan819@gmail.com",
           to: email,
           subject: "Email verification OTP",
-          html: `<h3>Use this otp: </h3> ${otp}`,
+          html: `<a  href="http://localhost:5173/otpvirification/${email}/${otp}">click here verify your email </a>`,
         });
         res.send({
           username: user.username,
