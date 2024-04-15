@@ -9,6 +9,8 @@ import OtpVerification from "./pages/OtpVerification";
 import Login from "./pages/Login";
 import Forgotpassword from "./pages/Forgotpassword";
 import ChangePass from "./pages/ChangePass";
+import Home from "./pages/Home";
+import Category from "./pages/Category";
 
 // react-router-dom
 function App() {
@@ -23,6 +25,9 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/forgotpassword" element={<Forgotpassword />}></Route>
         <Route path="/changepass/:token" element={<ChangePass />}></Route>
+        <Route path="/home" element={<Home />}>
+          <Route path="createcat" element={<Category />}></Route>
+        </Route>
       </Route>
     )
   );

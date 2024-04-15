@@ -8,7 +8,7 @@ const loginController = require("../../controllers/loginController");
 const _ = express.Router();
 
 _.post("/registration", secureApi, registrationContoller);
-_.post("/login", secureApi, loginController);
+_.post("/login", loginController);
 _.post("/otpverification", otpverificationController);
 _.post("/forgotpassemail", forgotPassEmailController);
 _.post("/changepass", changepassController);
